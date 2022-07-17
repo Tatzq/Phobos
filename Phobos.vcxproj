@@ -44,6 +44,10 @@
     <ClCompile Include="src\Ext\Trigger\Hooks.cpp" />
     <ClCompile Include="src\Ext\Unit\Hooks.Jumpjet.cpp" />
     <ClCompile Include="src\Misc\CaptureManager.cpp" />
+    <ClCompile Include="src\Misc\CustomTheater\CustomTheater.cpp" />
+    <ClCompile Include="src\Misc\CustomTheater\Hook.RMP.cpp" />
+    <ClCompile Include="src\Misc\CustomTheater\Hooks.cpp" />
+    <ClCompile Include="src\Misc\CustomTheater\TheaterProto.cpp" />
     <ClCompile Include="src\Misc\Hooks.Image.cpp" />
     <ClCompile Include="src\Misc\PhobosToolTip.cpp" />
     <ClCompile Include="src\Misc\TextInput.cpp" />
@@ -146,6 +150,8 @@
     <ClInclude Include="src\Ext\TEvent\Body.h" />
     <ClInclude Include="src\Misc\BlittersFix.h" />
     <ClInclude Include="src\Misc\CaptureManager.h" />
+    <ClInclude Include="src\Misc\CustomTheater\CustomTheater.h" />
+    <ClInclude Include="src\Misc\CustomTheater\TheaterProto.h" />
     <ClInclude Include="src\Misc\FlyingStrings.h" />
     <ClInclude Include="src\Misc\PhobosToolTip.h" />
     <ClInclude Include="src\New\Entity\ShieldClass.h" />
