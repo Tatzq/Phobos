@@ -5,14 +5,14 @@
 #include <Randomizer.h>
 
 // Writes the name of the theater to generated map
-DEFINE_HOOK(0x5997AB, MapGeneratorClass_init, 0)
+DEFINE_HOOK(0x5997AB, MapGeneratorClass_init, 0x9)
 {
 	R->ECX(ScenarioExt::Global()->CustomTheaterID.data());
 	return 0x5997C6;
 }
 
 // Overrides the Ares hook RMG_EnableDesert on 0x5970EA
-DEFINE_HOOK(0x5970AF, MapSeedClass_SetMenuOptions, 0)
+DEFINE_HOOK(0x5970AF, MapSeedClass_SetMenuOptions, 0x7)
 {
 	GET(HWND, hWnd, EDI);
 
