@@ -20,6 +20,7 @@ void CustomTheater::Init(const char* id)
 		this->LoadFromProto(pProto);
 
 		this->UnloadMIXes();
+		MixFileClass::DestroyCache();
 		Game::SetProgress(6);
 		if (auto pConfig = Phobos::OpenConfig(this->TheaterFileName))
 		{
@@ -73,7 +74,7 @@ void CustomTheater::Patch()
 void CustomTheater::LoadFromProto(TheaterProto* pTheaterProto)
 {
 	strcpy_s(this->TerrainControl, pTheaterProto->TerrainControl);
-	strcpy_s(this->AutoInclude, NONE_STR);
+	strcpy_s(this->ExtendedRules, NONE_STR);
 
 	strcpy_s(this->PaletteISO, pTheaterProto->PaletteISO);
 	strcpy_s(this->PaletteOverlay, pTheaterProto->PaletteOverlay);
@@ -94,9 +95,9 @@ void CustomTheater::LoadFromINIFile(CCINIClass* pINI)
 	if (_strcmpi(this->TerrainControl, "<self>") == 0)
 		strcpy_s(this->TerrainControl, this->TheaterFileName);
 
-	pINI->ReadString(pSection, "AutoInclude", this->AutoInclude, this->AutoInclude);
-	if (_strcmpi(this->AutoInclude, "<self>") == 0)
-		strcpy_s(this->AutoInclude, this->TheaterFileName);
+	pINI->ReadString(pSection, "ExtendedRules", this->ExtendedRules, this->ExtendedRules);
+	if (_strcmpi(this->ExtendedRules, "<self>") == 0)
+		strcpy_s(this->ExtendedRules, this->TheaterFileName);
 
 	this->Slot = pINI->ReadBool(pSection, "IsArctic", (bool)this->Slot) ? TheaterType::Snow : TheaterType::Temperate;
 
@@ -162,5 +163,4 @@ void CustomTheater::UnloadMIXes()
 		GameDelete(pMixFile);
 
 	this->SpecificMixes.Clear();
-	MixFileClass::DestroyCache();
 }

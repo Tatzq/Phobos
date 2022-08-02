@@ -1,4 +1,5 @@
 #include "CustomTheater.h"
+#include "RulesClass.h"
 
 #include <Ext/Scenario/Body.h>
 #include <Utilities/GeneralUtils.h>
@@ -12,13 +13,10 @@ DEFINE_HOOK(0x687631, Read_Scenario_INI, 0x8)
 
 	Theater::Init(TheaterType::None);
 
-	auto autoInclude = CustomTheater::Instance->AutoInclude;
-
-	if (GeneralUtils::IsValidString(autoInclude))
+	if (auto pINI = Phobos::OpenConfig(CustomTheater::Instance->ExtendedRules))
 	{
-		auto pIncludeFile = CCFileClass(autoInclude);
-		if (pIncludeFile.Exists())
-			pINI->ReadCCFile(&pIncludeFile);
+		RulesClass::Instance->Read_File(pINI);
+		Phobos::CloseConfig(pINI);
 	}
 
 	return 0x687660;
