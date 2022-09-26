@@ -25,7 +25,7 @@ DEFINE_HOOK(0x687631, Read_Scenario_INI, 0x8)
 DEFINE_HOOK(0x5349C9, Theater_Init, 0x6)
 {
 	GET(int, theaterIndex, ECX);
-	LEA_STACK(TheaterType*, slot, STACK_OFFS(0x6C, 0x54));
+	LEA_STACK(TheaterType*, slot, STACK_OFFSET(0x6C, -0x54));
 
 	// For RMP
 	if (ScenarioClass::Instance->Theater <= TheaterType::None && theaterIndex >= 0)
@@ -33,7 +33,7 @@ DEFINE_HOOK(0x5349C9, Theater_Init, 0x6)
 
 	CustomTheater::Instance->Init(ScenarioExt::Global()->CustomTheaterID);
 
-	*slot = CustomTheater::Instance->Slot;
+	*slot = ScenarioClass::Instance->Theater;
 	R->EAX(FileSystem::LoadFile(CustomTheater::Instance->PaletteOverlay));
 	R->EDI(0);
 	R->EDX(0);
